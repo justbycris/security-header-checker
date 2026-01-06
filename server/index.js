@@ -52,10 +52,12 @@ app.post('/api/check-headers', async (req,res) => {
   ];
 
   securityHeaders.forEach(header => {
-    if(header){
-      score += 25; 
-      results.push({ header: header, status: 'present'})
-    } 
+    if(header.name){
+      score += header.points; 
+      results.push({ header: header.display, status: 'present'})
+    } else {
+      results.push({ header: header.display, status: 'missing'})
+    }
   })
 
   return { score, results };
