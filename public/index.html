@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Security Headers Checker</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -13,7 +14,10 @@
         <input type="url" id="urlInput" placeholder="https://example.com" />
         <button id="checkBtn">Check Headers</button>
       </div>
-      <div id="results"></div>
+      <div id="error-msg"></div>
+      <div id="results">
+        <h1>Security Report Summary</h1>
+      </div>
     </div>
     <script src="app.js"></script>
   </body>

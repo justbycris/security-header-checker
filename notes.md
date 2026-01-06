@@ -90,3 +90,6 @@ Create an object or array with these headers and their details:
 - Points
 
 **Want to start coding the analysis function now?** What structure will you use to store header information?
+
+
+ 
