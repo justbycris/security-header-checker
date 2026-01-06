@@ -21,7 +21,3 @@ checkBTN.addEventListener('click', async () => {
     }
 
 })
-
-function showResults(data){
-    results.
-}
