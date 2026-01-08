@@ -6,8 +6,10 @@ let results = document.getElementById('results')
 const log = console.log; 
 
 checkBTN.addEventListener('click', async () => {
-    
+   
     if(!userURL.value){
+        userURL.style.border = '1px solid red';
+        errorMsg.style.display = 'block';
         errorMsg.innerText = 'Please enter a URL...'
     }
 

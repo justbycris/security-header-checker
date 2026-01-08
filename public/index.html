@@ -8,17 +8,53 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="container">
+    <header>
       <h1>🔒 Security Headers Checker</h1>
+      <!-- <nav class="crumbs">
+        <ol>
+          <li class="crumb"><a href="#"></a></li>
+          <li class="crumb"><a href="#"></a></li>
+          <li class="crumb"></li>
+        </ol>
+      </nav> -->
+    </header>
+    <main class="container">
+      <!--URL Submit-->
       <div class="input-section">
-        <input type="url" id="urlInput" placeholder="https://example.com" />
-        <button id="checkBtn">Check Headers</button>
+        <div class="flex-row-container">
+          <input
+            type="url"
+            pattern="url"
+            id="urlInput"
+            placeholder="https://example.com"
+          />
+          <button id="checkBtn">
+            <img src="/public/assets/search.png" class="btn-icon" />Scan URL
+          </button>
+        </div>
+        <div id="error-msg" class="error-msg"></div>
       </div>
-      <div id="error-msg"></div>
-      <div id="results">
+      <!--RESULTS-->
+      <div id="results" class="results">
         <h1>Security Report Summary</h1>
+        <div class="results-review">
+          <h3>Summary</h3>
+        </div>
+        <div class="results-missing">
+          <h3>Missing Headers</h3>
+        </div>
+        <div class="results-headers">
+          <h3>Raw Headers</h3>
+        </div>
+        <div class="results-Info">
+          <h3>Info</h3>
+        </div>
       </div>
-    </div>
+    </main>
+    <!---FOOTER-->
+    <footer></footer>
     <script src="app.js"></script>
   </body>
 </html>
+<!--FLATICON
+<a href="https://www.flaticon.com/free-icons/loop" title="loop icons">Loop icons created by Cuputo - Flaticon</a>-->
