@@ -100,7 +100,7 @@ main .input-section {
     margin: 0 5px;
 }
 
-.error-msg {
+.error-msg, .server-error {
     display: none;
     color: red;
     /* background-color: rgb(255, 171, 171); */
@@ -115,6 +115,12 @@ main .input-section {
     width: 100%;
 }
 
+.server-error {
+    background-color: rgb(255, 171, 171);
+}
+
+
+
 /*----results ----*/
 .results {
     padding: 20px 15px;
@@ -125,4 +131,3 @@ main .input-section {
      box-sizing: border-box;
 }
 
-.

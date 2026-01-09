@@ -35,15 +35,20 @@
           </button>
         </div>
         <div id="error-msg" class="error-msg"></div>
+        <div class="server-error" id="server-err"></div>
       </div>
       <!--RESULTS-->
       <div id="results" class="results">
-        <h1>Security Report Summary</h1>
-        <div class="results-review">
-          <h3>Summary</h3>
-          <ul>
-            <li class="summary-url" id="summary-url"></li>
-          </ul>
+        <!--SUMMARY AND MAIN INFO-->
+        <div class="">
+          <h1>Security Report Summary</h1>
+          <div class="results-review">
+            <h3>Summary</h3>
+            <ul>
+              <li class="summary-data">Time of scan:</li>
+              <li class="summary-data" id="summary-url"></li>
+            </ul>
+          </div>
         </div>
         <div class="results-missing">
           <h3>Missing Headers</h3>

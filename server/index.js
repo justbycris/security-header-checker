@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const axios = require('axios')
+const dns = require('dns');
 require('dotenv').config();
 
 const app = express();
@@ -11,7 +12,6 @@ const log = console.log;
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
-
 
 
 //Endpoint
@@ -26,6 +26,7 @@ app.get('/api/test', (req,res) => {
 app.post('/api/check-headers', async (req,res) => {
   // 1. Get URL from request body
   const userURL = req.body.url; 
+  
 
   // 2. Validate URL exists
   if(!userURL){
@@ -33,11 +34,12 @@ app.post('/api/check-headers', async (req,res) => {
   } 
   try{
     new URL(userURL)
+    log('Step 1: Fetching headers from:', userURL);
   } catch (error){
     return res.json({ error: 'Invalid URL'})
   }
 
-  //
+  //Analyze userURL headers 
   function analyzeHeaders(headers) {
   let score = 0;
   const results = [];
@@ -59,17 +61,41 @@ app.post('/api/check-headers', async (req,res) => {
       results.push({ header: header.display, status: 'missing'})
     }
   })
-
+  log('Step 2: Headers fetched successfully');
   return { score, results };
+}
+
+async function checkAPI(url){
+  log('Step 3: Looking up DNS for:', userURL);
+  const hostURL = new URL(url);
+
+  // Setting options for dnsPromises.lookup() method
+    const options = {
+        // Setting family as 6 i.e. IPv6
+        hints: dns.ADDRCONFIG | dns.V4MAPPED,
+    };
+
+    const result = await dns.promises.lookup(hostURL.hostname, options)
+    log(`API RESULTS: ${result}`)
+    return result.address;
 }
 
   // 3. Try/catch block
     try {
         const response = await axios.get(userURL);
         log(`Response: ${response.headers}`);
+        
         const analysis = analyzeHeaders(response.headers);
-        res.json(analysis)
+        
+        const urlAPI = await checkAPI(userURL)
+        log('Step 4: DNS lookup successful:', urlAPI);
+        res.json({
+          analysis: analysis,
+          api: urlAPI
+        })
       } catch (error) {
+        log('ERROR DETAILS:', error.message); // This is key!
+        log('Error stack:', error.stack); 
         return res.status(500).json({ error: 'Failed to fetch headers from that URL' })
 }
 
