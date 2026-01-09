@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
 
+body {
+    background-color: #172033;
+}
+
 header, h1, h2, h3, h4, h5 {
-    font-family:Arial, Helvetica, sans-serif;
+ font-family: "Roboto", sans-serif;
 }
 
 h1{
@@ -13,12 +19,12 @@ h1{
 }
 
 header {
+    padding: 50px 10px;
     width: 100%;
-    height: 70px;
-    line-height: 70px;
-    background-color: #2C88E3;
+    box-sizing: border-box;
     text-align: center;
-    color: white;
+    color: rgb(232, 232, 232);
+
 }
 
 main {
@@ -43,13 +49,20 @@ main .input-section {
 .flex-row-container > input {
     max-width: 350px;
     width: 100%;
-    padding: 6px 5px;
+    padding: 10px 8px;
     font-family: monospace;
-    font-size: 26px;
+    font-size: 20px;
     outline: none;
     border-radius: 5px;
     border: 2px solid #e0e0e0;
+    box-sizing: border-box;
 }
+
+.flex-row-container > input::placeholder{
+    color: rgb(156, 156, 156);
+}
+
+
 
 .flex-row-container > input:focus {
     border: 1px solid #146ef5;
@@ -58,9 +71,10 @@ main .input-section {
 .flex-row-container > button {
     max-width: 180px;
     width: 100%;
-    font-family: monospace;
-    font-size: 22px;
-    padding: 10px 15px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px 15px;
     border-radius: 5px;
     cursor: pointer;
     background-color: #146ef5;
@@ -70,12 +84,19 @@ main .input-section {
     margin:-1px 5px 0 5px;
     display: flex;
     flex-flow: row nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     justify-content: center;
     align-items: center;
+
+}
+
+.flex-row-container > button:hover {
+    background-color: #0a61e3;
 }
 
 .flex-row-container > button > .btn-icon {
-    width: 20px;
+    width: 18px;
     margin: 0 5px;
 }
 
@@ -93,3 +114,15 @@ main .input-section {
     margin: 10px auto;
     width: 100%;
 }
+
+/*----results ----*/
+.results {
+    padding: 20px 15px;
+    display: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 28px;
+     box-sizing: border-box;
+}
+
+.

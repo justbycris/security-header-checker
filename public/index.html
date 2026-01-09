@@ -6,10 +6,12 @@
     <title>Security Headers Checker</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <header>
-      <h1>🔒 Security Headers Checker</h1>
+      <h1>Security Headers Checker</h1>
       <!-- <nav class="crumbs">
         <ol>
           <li class="crumb"><a href="#"></a></li>
@@ -26,7 +28,7 @@
             type="url"
             pattern="url"
             id="urlInput"
-            placeholder="https://example.com"
+            placeholder="https://www.example.com"
           />
           <button id="checkBtn">
             <img src="/public/assets/search.png" class="btn-icon" />Scan URL
@@ -39,6 +41,9 @@
         <h1>Security Report Summary</h1>
         <div class="results-review">
           <h3>Summary</h3>
+          <ul>
+            <li class="summary-url" id="summary-url"></li>
+          </ul>
         </div>
         <div class="results-missing">
           <h3>Missing Headers</h3>
