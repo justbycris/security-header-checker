@@ -4,6 +4,8 @@ let errorMsg = document.getElementById('error-msg');
 let serverErr = document.getElementById('server-err')
 let results = document.getElementById('results');
 let resultsURL = document.getElementById('summary-url');
+let resultsIP = document.getElementById('results-ip');
+let score = document.getElementById('results-score'); 
 const log = console.log; 
 
 checkBTN.addEventListener('click', async () => {
@@ -29,12 +31,15 @@ checkBTN.addEventListener('click', async () => {
     //Fetch server response and show in the frontend 
     try {
         const response = await axios.post(`http://localhost:3000/api/check-headers`, {
-            url: userURL.value,
+            url: userURL.value
         });
 
-            log(`Response data: ${response.data}`)
-            results.style.display = 'block';
+            log(response.data)
+            userURL.style.border = '2px solid green'
+            results.style.visibility = 'visible';
+            resultsIP.innerText = response.data.ip;
             resultsURL.innerText = userURL.value;
+            score.innerText = response.data.analysis.score;
         
         console.log(response.data);
         return response;

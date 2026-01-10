@@ -37,20 +37,30 @@
         <div id="error-msg" class="error-msg"></div>
         <div class="server-error" id="server-err"></div>
       </div>
+    </main>
+    <section id="results">
       <!--RESULTS-->
-      <div id="results" class="results">
+      <div class="results">
         <!--SUMMARY AND MAIN INFO-->
-        <div class="">
-          <h1>Security Report Summary</h1>
-          <div class="results-review">
-            <h3>Summary</h3>
-            <ul>
-              <li class="summary-data">Time of scan:</li>
-              <li class="summary-data" id="summary-url"></li>
-            </ul>
+        <div class="summary">
+          <div>
+            <h1>Security Report Summary</h1>
+            <div class="summary-review">
+              <h3>Summary</h3>
+              <ul>
+                <li class="summary-data">Time of scan:</li>
+                <li class="summary-data" id="summary-url"></li>
+                <li class="summary-data" id="results-ip"></li>
+              </ul>
+            </div>
+          </div>
+          <div class="">
+            <h3>Score:</h3>
+            <div id="results-score" class="results-score"></div>
           </div>
         </div>
-        <div class="results-missing">
+        <!--END OF SUMMARY-->
+        <!-- <div class="results-missing">
           <h3>Missing Headers</h3>
         </div>
         <div class="results-headers">
@@ -58,9 +68,9 @@
         </div>
         <div class="results-Info">
           <h3>Info</h3>
-        </div>
+        </div> -->
       </div>
-    </main>
+    </section>
     <!---FOOTER-->
     <footer></footer>
     <script src="app.js"></script>

@@ -87,11 +87,11 @@ async function checkAPI(url){
         
         const analysis = analyzeHeaders(response.headers);
         
-        const urlAPI = await checkAPI(userURL)
-        log('Step 4: DNS lookup successful:', urlAPI);
+        const urlIP = await checkAPI(userURL)
+        log('Step 4: DNS lookup successful:', urlIP);
         res.json({
           analysis: analysis,
-          api: urlAPI
+          ip: urlIP
         })
       } catch (error) {
         log('ERROR DETAILS:', error.message); // This is key!
