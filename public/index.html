@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -31,7 +31,7 @@
             placeholder="https://www.example.com"
           />
           <button id="checkBtn">
-            <img src="/public/assets/search.png" class="btn-icon" />Scan URL
+            <img src="./assets/search.png" class="btn-icon" />Scan URL
           </button>
         </div>
         <div id="error-msg" class="error-msg"></div>
@@ -44,9 +44,8 @@
         <!--SUMMARY AND MAIN INFO-->
         <div class="summary">
           <div>
-            <h1>Security Report Summary</h1>
+            <h1>Scan Summary:</h1>
             <div class="summary-review">
-              <h3>Summary</h3>
               <ul>
                 <li class="summary-data">Time of scan:</li>
                 <li class="summary-data" id="summary-url"></li>
@@ -54,13 +53,15 @@
               </ul>
             </div>
           </div>
-          <div class="">
+          <div class="score-section">
             <h3>Score:</h3>
             <div id="results-score" class="results-score"></div>
           </div>
         </div>
-        <!--END OF SUMMARY-->
-        <!-- <div class="results-missing">
+      </div>
+      <!--END OF SUMMARY-->
+      <div class="results-details">
+        <div class="results-missing">
           <h3>Missing Headers</h3>
         </div>
         <div class="results-headers">
@@ -68,7 +69,7 @@
         </div>
         <div class="results-Info">
           <h3>Info</h3>
-        </div> -->
+        </div>
       </div>
     </section>
     <!---FOOTER-->
