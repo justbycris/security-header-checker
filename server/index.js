@@ -107,13 +107,12 @@ async function checkAPI(url){
 //     log(`Server running on http://localhost:${PORT}`);
 // })
 
-// At the END of your server file, add:
-module.exports = app;  // Export your Express app
 
-// Comment out or wrap the app.listen() in a condition:
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 }
+
+module.exports = app;  // Export your Express app
