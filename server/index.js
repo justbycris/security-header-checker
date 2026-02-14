@@ -21,12 +21,10 @@ app.get('/api/test', (req,res) => {
     
 })
 
-
 //Headers check endpoint 
 app.post('/api/check-headers', async (req,res) => {
   // 1. Get URL from request body
   const userURL = req.body.url; 
-  
 
   // 2. Validate URL exists
   if(!userURL){

@@ -6,6 +6,20 @@ A web application that analyzes HTTP security headers of any website and provide
 
 This tool helps developers and security professionals quickly audit websites for common security header misconfigurations. It checks for essential security headers and provides educational information about each one.
 
+## 🚀 Version 1.0 (Current)
+✅ Real-time header analysis
+✅ Security scoring (0-100)
+✅ 7 critical headers checked
+✅ Detailed explanations
+✅ Actionable recommendations
+
+## 🔮 Roadmap (V2.0)
+⏳ Historical tracking
+⏳ Bulk domain analysis
+⏳ Confidence scores
+⏳ Export reports as PDF
+⏳ SSL/TLS certificate analysis
+
 ## ✨ Features
 
 - **Real-time Header Analysis**: Fetch and analyze security headers from any URL
