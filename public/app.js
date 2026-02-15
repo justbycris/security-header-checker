@@ -66,7 +66,7 @@ checkBTN.addEventListener('click', async () => {
 
     //Fetch server response and show in the frontend 
     try {
-        const response = await axios.post(`/check-headers`, {
+        const response = await axios.post(`/api/check-headers`, {
             url: userURL.value
         });
 
