@@ -17,7 +17,6 @@ app.use(express.static('public'));
 console.log('test')
 //Endpoint
 app.get('/api/test', (req,res) => {
-  log('Query params:', req.query);
   res.json({ message: 'Server is running!' });
 })
 
