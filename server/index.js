@@ -14,11 +14,11 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
+console.log('test')
 //Endpoint
 app.get('/api/test', (req,res) => {
-  log(req.body.url)
+  log('Query params:', req.query);
   res.json({ message: 'Server is running!' });
-    
 })
 
 //Headers check endpoint 
