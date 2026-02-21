@@ -1,6 +1,6 @@
-const express = require('express')
-const cors = require('cors')
-const axios = require('axios')
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
 const dns = require('dns');
 require('dotenv').config();
 
@@ -14,13 +14,12 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
-console.log('test')
-//Endpoint
-app.get('/api/test', (req,res) => {
-  res.json({ message: 'Server is running!' });
+//GET
+app.get('/', (req,res) => {
+  res.send({ message: 'Server is running!' });
 })
 
-//Headers check endpoint 
+//POST route
 app.post('/api/check-headers', async (req,res) => {
   // 1. Get URL from request body
   const userURL = req.body.url; 
@@ -102,9 +101,9 @@ async function checkAPI(url){
 })
 
 //Port
-// app.listen(PORT, () => {
-//     log(`Server running on http://localhost:${PORT}`);
-// })
+app.listen(PORT, () => {
+    log(`Server running on http://localhost:${PORT}`);
+})
 
 
 if (process.env.NODE_ENV !== 'production') {
