@@ -7,6 +7,7 @@ let results = document.getElementById('results');
 let resultsURL = document.getElementById('summary-url');
 let resultsIP = document.getElementById('results-ip');
 let score = document.getElementById('results-score'); 
+let scoreColor = document.getElementById('score-section');
 
 
 
@@ -17,12 +18,15 @@ function validateUserInput(userValue){
         userURL.style.border = '1px solid red';
         errorMsg.style.display = 'block';
         errorMsg.innerText = 'Please enter a URL...'
-        results.style.display = 'none';
+        results.style.visibility = 'hidden';
+        log('Empty user value')
         return false;
     } else {
         return true;
     }
 }
+
+
 
 // UI - check if user is typing and clean css styles
 function userIsTyping(input){
@@ -33,6 +37,7 @@ function userIsTyping(input){
         errorMsg.innerText = ''
         }
     })
+      log('CLEANING CSS STYLES INPUT')
 }
 
 // UI - display results 
@@ -43,8 +48,25 @@ function displayResultsUI(response){
     resultsIP.innerText = response.ip;
     resultsURL.innerText = `URL: ${userURL.value}`;
     score.innerText = response.analysis.score;
+
+    log(`Score: ${response.analysis.score}`)
+    scoreUI(response.analysis.score);
     //Results details
- 
+}
+
+//Score CSS Styles
+function scoreUI(score)  {
+    if(score > 50 && score < 60){
+        scoreColor.style.background = 'red'
+    } else if(score > 60 && score < 70){
+        scoreColor.style.background = '#ff9c08'
+    } else if(score > 70 && score < 80){
+        scoreColor.style.background = '#ecff3e'
+    } else if(score > 80 && score < 90){
+        scoreColor.style.background = '#a8ff3e'
+    } else if(score > 90 && score == 100){
+        scoreColor.style.background = '#18E000'
+    }
 }
 
 //UI - Show error if needed
@@ -57,6 +79,10 @@ function logError(code, error){
 
 //SCAN URL button event listener
 checkBTN.addEventListener('click', async () => {
+    userURL.style.border = 'none'
+    results.style.visibility = 'hidden';
+    log('Cleaned past results for a new request')
+
     validInput = false;
     userIsTyping(userURL)
     const isValid = validateUserInput(userURL.value)
@@ -69,14 +95,13 @@ checkBTN.addEventListener('click', async () => {
         const response = await axios.post(`/api/check-headers`, {
             url: userURL.value
         });
-
         log(`Response: ${response.data}`)
         displayResultsUI(response.data)
-
-        console.log(response.data);
         return response;
     } catch (error) {
         //Server ERROR and UI error
+         userURL.style.border = 'none'
+        results.style.visibility = 'hidden';
         logError(error.code, error.message)
         console.error(error);
     }

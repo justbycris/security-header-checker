@@ -92,4 +92,9 @@ Create an object or array with these headers and their details:
 **Want to start coding the analysis function now?** What structure will you use to store header information?
 
 
- 
+ ## Vercel 
+
+Commands: 
+- vercel → preview deployment, temporary URL, good for testing
+- vercel --prod → production deployment, updates your main live URL
+- vercel --prod --force → same as above but skips cache and does a completely fresh build

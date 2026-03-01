@@ -57,6 +57,8 @@ app.post('/api/check-headers', async (req,res) => {
       results.push({ header: header.display, status: 'missing'})
     }
   })
+
+
   log('Step 2: Headers fetched successfully');
   return { score, results };
 }
