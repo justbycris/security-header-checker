@@ -175,6 +175,10 @@ li.summary-data {
   text-align: center;
 }
 
+.results-score{
+    font: bold 3.2rem "Arial", sans-serif;
+}
+
 .results-details {
     padding: 20px 15px;
     text-align: left;

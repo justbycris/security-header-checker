@@ -6,7 +6,7 @@ let serverErr = document.getElementById('server-err')
 let results = document.getElementById('results');
 let resultsURL = document.getElementById('summary-url');
 let resultsIP = document.getElementById('results-ip');
-let score = document.getElementById('results-score'); 
+let score = document.getElementById('score'); 
 let scoreColor = document.getElementById('score-section');
 
 
@@ -37,7 +37,6 @@ function userIsTyping(input){
         errorMsg.innerText = ''
         }
     })
-      log('CLEANING CSS STYLES INPUT')
 }
 
 // UI - display results 
@@ -47,7 +46,7 @@ function displayResultsUI(response){
     results.style.visibility = 'visible';
     resultsIP.innerText = response.ip;
     resultsURL.innerText = `URL: ${userURL.value}`;
-    score.innerText = response.analysis.score;
+    score.innerHTML = response.analysis.score;
 
     log(`Score: ${response.analysis.score}`)
     scoreUI(response.analysis.score);
@@ -55,18 +54,30 @@ function displayResultsUI(response){
 }
 
 //Score CSS Styles
-function scoreUI(score)  {
-    if(score > 50 && score < 60){
-        scoreColor.style.background = 'red'
-    } else if(score > 60 && score < 70){
-        scoreColor.style.background = '#ff9c08'
-    } else if(score > 70 && score < 80){
-        scoreColor.style.background = '#ecff3e'
-    } else if(score > 80 && score < 90){
-        scoreColor.style.background = '#a8ff3e'
-    } else if(score > 90 && score == 100){
-        scoreColor.style.background = '#18E000'
-    }
+function scoreUI(resultsScore)  {
+    // log(resultsScore)
+    // console.log(scoreColor, score)
+    if(resultsScore <= 59){
+        scoreColor.style.background = '#bd0000'; 
+        scoreColor.style.color = '#ffffff'; 
+        score.style.color = 'white';
+      } else if(resultsScore >= 60 && resultsScore <= 70){
+        scoreColor.style.background = '#ff5100';
+        scoreColor.style.color = '#ffffff'; 
+        score.style.color = 'white';
+    } else if(resultsScore >= 70 && resultsScore < 80){
+        scoreColor.style.background = '#fff23e';
+        score.style.color = '#1e1e1e';
+
+    } else if(resultsScore >= 80 && resultsScore <= 90){
+        scoreColor.style.background = '#a8ff3e';
+        score.style.color = '#1e1e1e';
+    } else if(resultsScore > 90){
+        scoreColor.style.background = '#00970a';
+        scoreColor.style.color = '#fff'
+        score.style.color = '#ffffff'; 
+   }
+    log('END SCORE COLORING')
 }
 
 //UI - Show error if needed
@@ -75,7 +86,6 @@ function logError(code, error){
     serverErr.style.display = 'block'
     userURL.style.border = '1px solid red';
 }
-
 
 //SCAN URL button event listener
 checkBTN.addEventListener('click', async () => {

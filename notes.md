@@ -98,3 +98,14 @@ Commands:
 - vercel → preview deployment, temporary URL, good for testing
 - vercel --prod → production deployment, updates your main live URL
 - vercel --prod --force → same as above but skips cache and does a completely fresh build
+
+# TESTING URLS 
+
+Score     URL
+50        https://substack.com/
+55        https://bsky.app/
+65        https://www.vsco.co/ 
+75        https://www.cloudflare.com/
+80        https://www.snap.com/
+90        https://www.instagram.com/
+100       https://owasp.org/
