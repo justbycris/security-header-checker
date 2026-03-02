@@ -1,3 +1,4 @@
+<span style="color:red; font-weight: bold; font-family: monospace; ">Status: In progress...</span>
 # 🔒 Security Headers Checker
 
 A web application that analyzes HTTP security headers of any website and provides a security score with actionable recommendations.
