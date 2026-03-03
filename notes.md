@@ -99,6 +99,13 @@ Commands:
 - vercel --prod → production deployment, updates your main live URL
 - vercel --prod --force → same as above but skips cache and does a completely fresh build
 
+### Project URLS:
+- Main: https://security-header-checker.vercel.app/
+- Inspect: https://vercel.com/cristis-projects-cdddd685/security-header-checker/EdUtfAi3dQEoukDWN5dcPmmEdx1y
+- Production:  ttps://security-header-checker-kyfz53kwx-cristis-projects-cdddd685.vercel.app
+- Alias: https://security-header-checker.vercel.app/ 
+
+
 # TESTING URLS 
 
 Score     URL

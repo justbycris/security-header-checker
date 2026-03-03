@@ -8,7 +8,7 @@ let resultsURL = document.getElementById('summary-url');
 let resultsIP = document.getElementById('results-ip');
 let score = document.getElementById('score'); 
 let scoreColor = document.getElementById('score-section');
-
+let scanTime = document.getElementById('summary-time')
 
 
 //Validation - if input value is empty throw an error 
@@ -22,6 +22,11 @@ function validateUserInput(userValue){
         log('Empty user value')
         return false;
     } else {
+        serverErr.style.display = 'none'
+        userURL.style.border = 'none';
+        errorMsg.style.display = 'none';
+        errorMsg.innerText = ''
+        results.style.visibility = 'hidden';
         return true;
     }
 }
@@ -42,21 +47,23 @@ function userIsTyping(input){
 // UI - display results 
 function displayResultsUI(response){
     //Review
+    
+    const d = new Date();
+    scanTime.innerHTML = `<strong>Scan Time:</strong> ${d}`
     userURL.style.border = '4px solid green'
     results.style.visibility = 'visible';
-    resultsIP.innerText = response.ip;
-    resultsURL.innerText = `URL: ${userURL.value}`;
+    resultsIP.innerHTML = `<strong>IP Address:</strong> ${response.ip}`;
+    resultsURL.innerHTML = `<strong>URL:</strong> ${userURL.value}`;
     score.innerHTML = response.analysis.score;
 
-    log(`Score: ${response.analysis.score}`)
+    log(`Score: ${response.analysis.score}`); 
     scoreUI(response.analysis.score);
     //Results details
 }
 
-//Score CSS Styles
+//Score UI styles
 function scoreUI(resultsScore)  {
-    // log(resultsScore)
-    // console.log(scoreColor, score)
+
     if(resultsScore <= 59){
         scoreColor.style.background = '#bd0000'; 
         scoreColor.style.color = '#ffffff'; 
@@ -67,6 +74,7 @@ function scoreUI(resultsScore)  {
         score.style.color = 'white';
     } else if(resultsScore >= 70 && resultsScore < 80){
         scoreColor.style.background = '#fff23e';
+        scoreColor.style.color = '#1e1e1e'; 
         score.style.color = '#1e1e1e';
 
     } else if(resultsScore >= 80 && resultsScore <= 90){
@@ -110,10 +118,9 @@ checkBTN.addEventListener('click', async () => {
         return response;
     } catch (error) {
         //Server ERROR and UI error
-         userURL.style.border = 'none'
+        userURL.style.border = 'none';
         results.style.visibility = 'hidden';
         logError(error.code, error.message)
         console.error(error);
     }
-
 })
