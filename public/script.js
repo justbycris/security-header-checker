@@ -8,8 +8,10 @@ let resultsURL = document.getElementById('summary-url');
 let resultsIP = document.getElementById('results-ip');
 let score = document.getElementById('score'); 
 let scoreColor = document.getElementById('score-section');
-let scanTime = document.getElementById('summary-time')
-
+let scanTime = document.getElementById('summary-time');
+let headersList = document.getElementById('summary-headers');
+let headersMissing = document.getElementById('summary-missing-headers'); 
+let missingInfo = document.getElementById('missing-headers-info')
 
 //Validation - if input value is empty throw an error 
 function validateUserInput(userValue){
@@ -44,10 +46,33 @@ function userIsTyping(input){
     })
 }
 
+//Show present and missing headers in UI 
+function displayHeaders(headers){
+
+    headersList.innerHTML = '<strong>Headers: </strong>';
+    headersMissing.innerHTML = '<strong>Missing Headers: </strong>';
+    for(i = 0; i < headers.length; i++){
+        if(headers[i].status != 'missing') {
+            headersList.innerHTML += `<span class="header-present">${headers[i].header}</span>` + ' | '; 
+        } else {
+            headersMissing.innerHTML += `<span class="header-missing">${headers[i].header}</span>` + ' | ';
+            missingInfo.innerHTML += `
+            <li class="header-explanation"> ${headers[i].explanation}</li>
+            `
+        }
+       log(headers[i].explanation)
+
+    }
+
+    
+
+
+
+}
+
 // UI - display results 
 function displayResultsUI(response){
     //Review
-    
     const d = new Date();
     scanTime.innerHTML = `<strong>Scan Time:</strong> ${d}`
     userURL.style.border = '4px solid green'
@@ -56,7 +81,10 @@ function displayResultsUI(response){
     resultsURL.innerHTML = `<strong>URL:</strong> ${userURL.value}`;
     score.innerHTML = response.analysis.score;
 
-    log(`Score: ${response.analysis.score}`); 
+   
+    const headerResults = response.analysis.results;
+    displayHeaders(headerResults)
+    // log(`Score: ${response.analysis.score}`); 
     scoreUI(response.analysis.score);
     //Results details
 }
@@ -85,7 +113,7 @@ function scoreUI(resultsScore)  {
         scoreColor.style.color = '#fff'
         score.style.color = '#ffffff'; 
    }
-    log('END SCORE COLORING')
+
 }
 
 //UI - Show error if needed
@@ -115,6 +143,7 @@ checkBTN.addEventListener('click', async () => {
         });
         log(`Response: ${response.data}`)
         displayResultsUI(response.data)
+
         return response;
     } catch (error) {
         //Server ERROR and UI error

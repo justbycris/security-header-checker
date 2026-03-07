@@ -51,6 +51,8 @@ main .input-section {
 .flex-row-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }
@@ -178,6 +180,22 @@ li.summary-data {
 
 }
 
+.header-present {
+    background-color: green;
+    font-family: monospace;
+    font-weight: bold;
+    color: white;
+     padding: 2px 4px;
+}
+
+.header-missing {
+    background-color: red;
+    font-family: monospace;
+    font-weight: bold;
+    color: white;
+    padding: 2px 8px;
+}
+
 .score-section {
   padding: 20px; 
   border: solid 2px gray;
@@ -213,4 +231,11 @@ li.summary-data {
 /*---FOOTER ---*/
 footer {
     background-color: white;
+}
+
+/*------ MEDIA QUERIES -----*/
+@media (max-width: 640px) {
+  .error-msg, .server-error {
+    text-align: center;
+  }
 }

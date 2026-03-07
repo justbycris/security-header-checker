@@ -13,7 +13,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-
 //GET
 app.get('/', (req,res) => {
   res.send({ message: 'Server is running!' });
@@ -23,11 +22,13 @@ app.get('/', (req,res) => {
 app.post('/api/check-headers', async (req,res) => {
   // 1. Get URL from request body
   const userURL = req.body.url; 
+  
 
   // 2. Validate URL exists
   if(!userURL){
     return res.json({ error: 'Please enter a URL'})
   } 
+
   try{
     new URL(userURL)
     log('Step 1: Fetching headers from:', userURL);
@@ -37,30 +38,30 @@ app.post('/api/check-headers', async (req,res) => {
 
   //Analyze userURL headers 
   function analyzeHeaders(headers) {
-  let score = 0;
-  const results = [];
+    let score = 0;
+    const results = [];
 
-  const securityHeaders = [
-    { name: 'strict-transport-security', display: 'HSTS', points: 25 },
-    { name: 'content-security-policy', display: 'CSP', points: 25 },
-    { name: 'x-content-type-options', display: 'X-Content-Type-Options', points: 15 },
-    { name: 'x-frame-options', display: 'X-Frame-Options', points: 15 },
-    { name: 'referrer-policy', display: 'Referrer-Policy', points: 10 },
-    { name: 'permissions-policy', display: 'Permissions-Policy', points: 10 }
-  ];
+    const securityHeaders = [
+      { name: 'strict-transport-security', display: 'HSTS', points: 25, explanation: 'It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and within a defined timespan (max-age) not via the clear text HTTP protocol.' },
+      { name: 'content-security-policy', display: 'CSP', points: 25, explanation: 'Allows website administrators to control resources the user agent is allowed to load for a given page.' },
+      { name: 'x-content-type-options', display: 'X-Content-Type-Options', points: 15, explanation: 'Setting this header will prevent the browser from interpreting files as a different MIME type to what is specified' },
+      { name: 'x-frame-options', display: 'X-Frame-Options', points: 15, explanation: 'The HTTP X-Frame-Options response header can be used to indicate whether a browser should be allowed to render the document in a &lt;frame&gt;, &lt; iframe&gt;, &lt;embed&gt; or &lt; object&gt;. Sites can use this to avoid clickjacking attacks and some cross-site leaks, by ensuring that their content is not embedded into other sites.' },
+      { name: 'referrer-policy', display: 'Referrer-Policy', points: 10, explanation: 'Controls which referrer information, sent in the Referer header, should be included with requests made.' },
+      { name: 'permissions-policy', display: 'Permissions-Policy', points: 10, explanation: 'Provides a mechanism to allow and deny the use of browser features in a document or within any &lt;iframe&gt; elements in the document.' }
+    ];
 
   securityHeaders.forEach(header => {
     if(headers[header.name]){
       score += header.points; 
       results.push({ header: header.display, status: 'present'})
     } else {
-      results.push({ header: header.display, status: 'missing'})
+      results.push({ header: header.display, status: 'missing', explanation: header.explanation})
     }
   })
 
-
-  log('Step 2: Headers fetched successfully');
-  return { score, results };
+  log('Step 2: Headers fetched successfully', results);
+  
+  return { score, results};
 }
 
 async function checkAPI(url){
@@ -87,10 +88,13 @@ async function checkAPI(url){
         
         const urlIP = await checkAPI(userURL)
         log('Step 4: DNS lookup successful:', urlIP);
+        log('analysis', analysis)
         res.json({
           analysis: analysis,
           ip: urlIP
         })
+
+
       } catch (error) {
         log('ERROR DETAILS:', error.message); // This is key!
         log('Error stack:', error.stack); 

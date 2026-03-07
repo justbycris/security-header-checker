@@ -116,3 +116,12 @@ Score     URL
 80        https://www.snap.com/
 90        https://www.instagram.com/
 100       https://owasp.org/
+
+
+# TO DO MARCH 7 ... 
+Great job! got a lot done. 
+What's next: 
+    - Add missing headers information 
+        - Make it user friendly and beginner friendly 
+        - Show reaseach sources 
+        - UI 
