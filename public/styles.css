@@ -145,7 +145,7 @@ section {
 .results {
     display: flex;
     flex-direction: column;
-    max-width: 800px;
+    max-width: 880px;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -216,7 +216,7 @@ li.summary-data {
     text-align: left;
     display: flex;
     flex-direction: column;
-    max-width: 800px;
+    max-width: 880px;
     width: 100%;
     justify-content: center;
     border: 2px solid gray;
