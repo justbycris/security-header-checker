@@ -2,7 +2,7 @@ const log = console.log;
 let userURL = document.getElementById('urlInput'); 
 let checkBTN = document.getElementById('checkBtn'); 
 let errorMsg = document.getElementById('error-msg'); 
-let serverErr = document.getElementById('server-err')
+let serverErr = document.getElementById('server-err');
 let results = document.getElementById('results');
 let resultsURL = document.getElementById('summary-url');
 let resultsIP = document.getElementById('results-ip');
@@ -11,7 +11,8 @@ let scoreColor = document.getElementById('score-section');
 let scanTime = document.getElementById('summary-time');
 let headersList = document.getElementById('summary-headers');
 let headersMissing = document.getElementById('summary-missing-headers'); 
-let missingInfo = document.getElementById('missing-headers-info')
+let missingInfo = document.getElementById('missing-headers-info');
+let showRawHeaders = document.getElementById('raw-headers'); 
 
 //Validation - if input value is empty throw an error 
 function validateUserInput(userValue){
@@ -57,17 +58,19 @@ function displayHeaders(headers){
         } else {
             headersMissing.innerHTML += `<span class="header-missing">${headers[i].header}</span>` + ' | ';
             missingInfo.innerHTML += `
-            <li class="header-explanation"> ${headers[i].explanation}</li>
+            <li class="header-explanation"><span style="font-weight: bold; color: red;">${headers[i].header}:</span> ${headers[i].explanation}</li>
             `
         }
-       log(headers[i].explanation)
-
     }
 
-    
+  
+}
 
 
-
+//UI - display raw headers 
+function displayRawHeaders(headers, configHeaders){
+    const raw = JSON.stringify(headers)
+    showRawHeaders.innerText = configHeaders + headers;
 }
 
 // UI - display results 
@@ -83,7 +86,11 @@ function displayResultsUI(response){
 
    
     const headerResults = response.analysis.results;
+    
+    
     displayHeaders(headerResults)
+
+    
     // log(`Score: ${response.analysis.score}`); 
     scoreUI(response.analysis.score);
     //Results details
@@ -141,8 +148,11 @@ checkBTN.addEventListener('click', async () => {
         const response = await axios.post(`/api/check-headers`, {
             url: userURL.value
         });
-        log(`Response: ${response.data}`)
+        log('RESPONSE: ', response)
         displayResultsUI(response.data)
+        displayRawHeaders(response.config.headers, response.headers)
+        // log(`DATA:`, raw)
+        
 
         return response;
     } catch (error) {

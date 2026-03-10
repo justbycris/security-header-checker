@@ -23,7 +23,7 @@ h1{
     margin-bottom: 15px 0 5px 0;
 }
 
-h2{
+h2, h3{
     margin-bottom: 10px;
 }
 
@@ -143,10 +143,9 @@ section {
 }
 
 .results {
-    padding: 20px 15px;
     display: flex;
     flex-direction: column;
-    max-width: 1200px;
+    max-width: 800px;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -157,8 +156,7 @@ section {
     line-height: 28px;
     box-sizing: border-box;
     margin: 20px auto;
-    padding: 20px; 
-    box-sizing: border-box;
+    padding: 45px; 
 }
 
 .summary {
@@ -196,6 +194,12 @@ li.summary-data {
     padding: 2px 8px;
 }
 
+.header-explanation {
+    font-family: monospace;
+    list-style-type: none;
+
+}
+
 .score-section {
   padding: 20px; 
   border: solid 2px gray;
@@ -208,11 +212,11 @@ li.summary-data {
 }
 
 .results-details {
-    padding: 20px 15px;
+    padding: 45px;
     text-align: left;
     display: flex;
     flex-direction: column;
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
     justify-content: center;
     border: 2px solid gray;
@@ -220,10 +224,18 @@ li.summary-data {
     color: #1e1e1e;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 28px;
-    box-sizing: border-box;
     margin: 20px auto;
-    padding: 20px; 
     box-sizing: border-box;
+}
+
+.results-headers textarea {
+    width: 100%;
+    height: 200px;
+    min-height: 100%;
+}
+
+.results-missing, .results-headers {
+    margin: 0 0 20px 0;
 }
 
 
@@ -238,4 +250,17 @@ footer {
   .error-msg, .server-error {
     text-align: center;
   }
+  .score-section {
+    margin-bottom: 35px;
+    width: 100%;
+  }
 }
+
+@media (min-width: 645px) and (max-width: 990px) {
+
+  .score-section {
+    margin-bottom: 35px;
+    width: 100%;
+  }
+}
+ 

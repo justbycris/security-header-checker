@@ -36,6 +36,7 @@ app.post('/api/check-headers', async (req,res) => {
     return res.json({ error: 'Invalid URL'})
   }
 
+
   //Analyze userURL headers 
   function analyzeHeaders(headers) {
     let score = 0;
@@ -46,7 +47,7 @@ app.post('/api/check-headers', async (req,res) => {
       { name: 'content-security-policy', display: 'CSP', points: 25, explanation: 'Allows website administrators to control resources the user agent is allowed to load for a given page.' },
       { name: 'x-content-type-options', display: 'X-Content-Type-Options', points: 15, explanation: 'Setting this header will prevent the browser from interpreting files as a different MIME type to what is specified' },
       { name: 'x-frame-options', display: 'X-Frame-Options', points: 15, explanation: 'The HTTP X-Frame-Options response header can be used to indicate whether a browser should be allowed to render the document in a &lt;frame&gt;, &lt; iframe&gt;, &lt;embed&gt; or &lt; object&gt;. Sites can use this to avoid clickjacking attacks and some cross-site leaks, by ensuring that their content is not embedded into other sites.' },
-      { name: 'referrer-policy', display: 'Referrer-Policy', points: 10, explanation: 'Controls which referrer information, sent in the Referer header, should be included with requests made.' },
+      { name: 'referrer-policy', display: 'Referrer-Policy', points: 10, explanation: 'This header controls which referrer information, sent in the Referer header, should be included with requests made.' },
       { name: 'permissions-policy', display: 'Permissions-Policy', points: 10, explanation: 'Provides a mechanism to allow and deny the use of browser features in a document or within any &lt;iframe&gt; elements in the document.' }
     ];
 
@@ -59,7 +60,7 @@ app.post('/api/check-headers', async (req,res) => {
     }
   })
 
-  log('Step 2: Headers fetched successfully', results);
+  // log('Step 2: Headers fetched successfully', results);
   
   return { score, results};
 }
@@ -82,19 +83,21 @@ async function checkAPI(url){
   // 3. Try/catch block
     try {
         const response = await axios.get(userURL);
-        log(`Response: ${response.headers}`);
+        log(`Response api: ${response.headers}`);
         
         const analysis = analyzeHeaders(response.headers);
         
         const urlIP = await checkAPI(userURL)
         log('Step 4: DNS lookup successful:', urlIP);
-        log('analysis', analysis)
+     
         res.json({
           analysis: analysis,
           ip: urlIP
+          
+       
         })
 
-
+        
       } catch (error) {
         log('ERROR DETAILS:', error.message); // This is key!
         log('Error stack:', error.stack); 
